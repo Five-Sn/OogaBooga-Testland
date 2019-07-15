@@ -18,6 +18,10 @@ def does_name_equal_main(main):
 
 if __name__ == "__main__":
     print("Hewlleow and wel wlcaome to ")
+<<<<<<< HEAD
     # subprocess.call(["git", "rebase", "-i", "HEAD~2"])
+=======
+    subprocess.call(["git", "branch", "-d", "ooga_mcbooga"])
+>>>>>>> thingy
     print("-GAhhhhhhhhsSA")
     # main()

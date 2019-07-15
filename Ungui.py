@@ -88,11 +88,12 @@ if target_branch_ref == feature_branch_ref:
     sys.exit(1)
 
 print('Fetching upstream changes...')
-git('fetch', remote)
+# git('fetch', remote)
 
 # We need to get a full rev-list using the '...' notation in order to account for
 # merges of the target branch into our feature branch.
 commits = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format(target_branch_remote))
+print('got commits:\n' + str(commits))
 
 # Since we retrieved the list in reverse order, we need to look for the first commit on our side (left)
 # and strip off the '<' sign.
