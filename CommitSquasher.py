@@ -75,6 +75,7 @@ def main():
 
     # git log --graph --decorate --oneline
     # gets a list of commits with their SHA hash IDs
+    # these commits are all those of the current branch and whatever it inherited from branching off
 
     # git rebase -p --onto xsha^ xsha
     # deletes the commit with the hash xsha
