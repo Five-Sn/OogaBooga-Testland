@@ -1,7 +1,7 @@
 import sys
 from subprocess import Popen, STDOUT, PIPE
 
-# The amount of commits to squash (including the current one)
+# The amount of commits to squash into the current one
 squash_amount = 2
 
 
@@ -41,8 +41,6 @@ def main():
 
     git('fetch', 'origin')
     commits = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
-    '''for commitithink in commits:
-        print(git('show', '--no-patch', '--format=%B', commitithink))'''
 
     # first_commit_on_branch = iter(commit for commit in commits if commit.startswith('<'))[1:]
     first_commit_on_branch = ""
@@ -50,6 +48,7 @@ def main():
         if commit.startswith('<'):
             first_commit_on_branch = commit
 
+    '''
     relation = 'HEAD'
     # this loop gets and prints every commit message
     times_back = 0
@@ -64,11 +63,17 @@ def main():
             break
         times_back += 1
         relation = 'HEAD~' + str(times_back)
+        '''
 
-    thingymabob = git('log', '--graph', '--decorate', '--oneline')
-    print(thingymabob)
+    thingymabob = git('log', '--graph', '--decorate', '--oneline')[1:squash_amount+1]
+    for thing in thingymabob:
+        print(thing)
+
     # [2:9] is the part with the hash
-    print(thingymabob[0][2:9])
+    # print(thingymabob[0][2:9])
+
+    # narrow it down to the ones at index 1 and 2
+    # thingymabob = thingymabob[1:3]
 
     # git branch -f master HEAD~3
     # sets the master branch to being at the commit at HEAD~3
