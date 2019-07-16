@@ -65,7 +65,8 @@ def main():
     # git log --graph --decorate --oneline
     # gets a list of commits with their SHA hash IDs
 
-    # git rebase -p --onto SHE^ SHA
+    # git rebase -p --onto xsha^ xsha
+    # deletes the commit with the hash xsha
 
     # rev-parse HEAD gets the most recent commit's hash or something
     # change HEAD to something else to get that commit's has or whatever
