@@ -3,6 +3,7 @@ from subprocess import Popen, STDOUT, PIPE
 
 # The amount of commits to squash into the current one
 squash_amount = 2
+seperator = "# # # # # # # # # # # # # # #"
 
 
 def git(*arguments):
@@ -66,8 +67,44 @@ def main():
         '''
 
     thingymabob = git('log', '--graph', '--decorate', '--oneline')[1:squash_amount+1]
+    print(seperator)
+    print("Commit Messages (new to old):")
+    print(seperator)
+    messages = []
     for thing in thingymabob:
-        print(thing)
+        messages.append(thing[10:])
+        print(thing[10:])
+
+    print(seperator)
+    new_mes = ""
+    write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
+    if 'y' == write_new:
+        new_mes = input("Write new message below, enter to submit\n")
+        print("Cool, thanks...\n" + new_mes)
+
+    elif 'n' == write_new:
+        write_new = input("Use latest message? (y) Will combine all messages otherwise ").lower()
+        # Combine messages
+        if 'y' == write_new:
+            # TODO: I don't think this works at all
+            print("Combining messages...")
+            for m in messages:
+                new_mes += m
+
+        # Use latest
+        else:
+            print("Using latest message")
+            # TODO: I don't think this works either
+            new_mes = git('log', '--graph', '--decorate', '--oneline')[0][10:]
+
+    else:
+        print("Input not accepted, cancelling squish")
+        quit()
+
+    print(seperator)
+    print("Squashed commit message:")
+    print(seperator)
+    print(new_mes)
 
     # [2:9] is the part with the hash
     # print(thingymabob[0][2:9])
