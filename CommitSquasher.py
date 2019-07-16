@@ -1,6 +1,10 @@
 import sys
 from subprocess import Popen, STDOUT, PIPE
 
+# The amount of commits to squash (including the current one)
+squash_amount = 2
+
+
 def git(*arguments):
     print(arguments)
     cmdline = ['git']
@@ -48,16 +52,23 @@ def main():
 
     relation = 'HEAD'
     # this loop gets and prints every commit message
-    while True:
+    times_back = 0
+    while not times_back >= squash_amount - 1:
         try:
+            # printing this commit gives a long hashy-hash
             commit = git('rev-parse', relation)[0]
             commit_msg = str(git('show', '--no-patch', '--format=%B', commit)[0])
             print("# # # # # # # # # # # # # # #\n" + commit_msg + "\n# # # # # # # # # # # # # # #\n")
         except Exception as e:
             print('Exceptione: ' + str(e))
             break
-        # TODO: maybe get this to use the "~n" format (it might help a bit with storing the number of the commit)
-        relation += '^'
+        times_back += 1
+        relation = 'HEAD~' + str(times_back)
+
+    thingymabob = git('log', '--graph', '--decorate', '--oneline')
+    print(thingymabob)
+    # [2:9] is the part with the hash
+    print(thingymabob[0][2:9])
 
     # git branch -f master HEAD~3
     # sets the master branch to being at the commit at HEAD~3
