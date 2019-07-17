@@ -84,6 +84,7 @@ def main():
     #  could actually be commited.
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
+    print("HASH! " + git('log', '--pretty=format:%h')[0])
 
     # Sleep for one second to give time for the commit to go through
     sleep(1)
@@ -91,7 +92,7 @@ def main():
     # The commits list doesn't include the newest commit- now it's purely commits to delete
     for h in hashes:
         print(h)
-        git('rebase', '--rebase-merges', '--onto', h + '^', h)
+        # git('rebase', '--rebase-merges', '--onto', h + '^', h)
 
 
 # narrow it down to the ones at index 1 and 2
