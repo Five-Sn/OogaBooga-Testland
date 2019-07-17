@@ -2,7 +2,7 @@ import sys
 from subprocess import Popen, STDOUT, PIPE
 
 # The amount of commits to squash into the current one
-squash_amount = 2
+squash_amount = 7
 seperator = "# # # # # # # # # # # # # # #"
 
 
@@ -41,11 +41,11 @@ def main():
     print("Aww yeah!")
 
     git('fetch', 'origin')
-    commits = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
+    commitsee = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
 
     # first_commit_on_branch = iter(commit for commit in commits if commit.startswith('<'))[1:]
     first_commit_on_branch = ""
-    for commit in commits:
+    for commit in commitsee:
         if commit.startswith('<'):
             first_commit_on_branch = commit
 
@@ -66,12 +66,13 @@ def main():
         relation = 'HEAD~' + str(times_back)
         '''
 
-    thingymabob = git('log', '--graph', '--decorate', '--oneline')[1:squash_amount+1]
+    commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount+1]
     print(seperator)
     print("Commit Messages (new to old):")
     print(seperator)
     messages = []
-    for thing in thingymabob:
+    for thing in commits:
+        # TODO: stop using hardcoding like this and use that one function to get the commit message or whatever
         messages.append(thing[10:])
         print(thing[10:])
 
@@ -83,19 +84,18 @@ def main():
         print("Cool, thanks...\n" + new_mes)
 
     elif 'n' == write_new:
-        write_new = input("Use latest message? (y) Will combine all messages otherwise ").lower()
+        use_latest = input("Use latest message? (y) Will combine all messages otherwise ").lower()
         # Combine messages
-        if 'y' == write_new:
-            # TODO: I don't think this works at all
+        if 'y' == use_latest:
+            print("Using latest message")
+            new_mes = messages[0]
+
+        # Use the latest message
+        else:
             print("Combining messages...")
             for m in messages:
-                new_mes += m
-
-        # Use latest
-        else:
-            print("Using latest message")
-            # TODO: I don't think this works either
-            new_mes = git('log', '--graph', '--decorate', '--oneline')[0][10:]
+                new_mes += m + "\n"
+            new_mes = new_mes[:-1]
 
     else:
         print("Input not accepted, cancelling squish")
