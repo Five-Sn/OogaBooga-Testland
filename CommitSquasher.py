@@ -77,8 +77,8 @@ def main():
     commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount+1]
     # Make a list of their messages
     messages = []
-    for thing in commits:
-        message = git('show', '--no-patch', '--format=%B', thing[2:9])[0]
+    for c in commits:
+        message = git('show', '--no-patch', '--format=%B', c[2:9])[0]
         messages.append(message)
 
     # Print the messages
@@ -127,8 +127,9 @@ def main():
     git('add', '.')
     git('commit', '-m', new_mes)
 
-    for stuff in commits:
-        print(git('show', '--no-patch', '--format=%B', stuff[2:9])[0])
+    # The commits list doesn't include the newest commit- now it's purely commits to delete
+    for c in commits:
+        print(git('show', '--no-patch', '--format=%B', thing[2:9])[0])
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
