@@ -54,16 +54,17 @@ def main():
 
     git('fetch', 'origin')
 
-    # TODO: If the branches of commits and their hashes are important for the user to see, move these "messages" to
-    #  where they must be used. Don't print them here either, instead just print the results of this log command....
+    # TODO: With the next two git commands, the user will see a list of all the hashes and messeges of the requested
+    #  commits. Use the commented-out command between them for more detail
 
-    # Get the commits requested for squashing
+    # Get the first 7 characters of the hashes of the requested commits
     # If squash_amount is higher than the amount of what's available, it'll just get everything
-    commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount]
+    hashes = git('log', '--pretty=format:%h')[:squash_amount]
+    # git('log', '--graph', '--decorate', '--oneline')
     # Make a list of their messages
     messages = []
-    for c in commits:
-        message = git('show', '--no-patch', '--format=%B', c[2:9])[0]
+    for h in hashes:
+        message = git('show', '--no-patch', '--format=%B', h)[0]
         messages.append(message)
 
     # Print the messages
@@ -79,8 +80,8 @@ def main():
     confirm_squash(new_mes)
 
     # Commit the current files with the message chosen above
-    # TODO: If there are no new changes to add (and the commit won't be new), these two will cancel themselves
-    #  Maybe also don't add EVERYTHING? Right now it just helps ensure the commit is new
+    # TODO: Don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique so they
+    #  could actually be commited.
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
 
@@ -88,10 +89,9 @@ def main():
     sleep(1)
 
     # The commits list doesn't include the newest commit- now it's purely commits to delete
-    for c in commits:
-        SHA = c[2:9]
-        print(SHA)
-        git('rebase', '--rebase-merges', '--onto', SHA + '^', SHA)
+    for h in hashes:
+        print(h)
+        git('rebase', '--rebase-merges', '--onto', h + '^', h)
 
 
 # narrow it down to the ones at index 1 and 2
