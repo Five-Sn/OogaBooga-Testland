@@ -1,5 +1,6 @@
 import sys
 from subprocess import Popen, STDOUT, PIPE
+from time import sleep
 
 # TODO: add clargs and parseargs for the choices the user makes
 
@@ -99,6 +100,9 @@ def main():
     #  Maybe also don't add EVERYTHING? Right now it just helps ensure the commit is new
     git('add', '.')
     git('commit', '-m', new_mes)
+
+    # Sleep for one second to give time for the commit to go through
+    sleep(1)
 
     # The commits list doesn't include the newest commit- now it's purely commits to delete
     for c in commits:

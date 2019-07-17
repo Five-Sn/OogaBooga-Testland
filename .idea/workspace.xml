@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CommitSquasher.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommitSquasher.py" afterDir="false" />
-    </list>
+    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,16 +34,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+            <state relative-caret-position="314">
+              <caret line="106" column="68" lean-forward="true" selection-start-line="106" selection-start-column="68" selection-end-line="106" selection-end-column="68" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#199#864#0" />
-                <element signature="e#3710#4776#0" />
-                <element signature="e#3917#4107#0" />
-                <element signature="e#4152#4589#0" />
-                <element signature="e#4617#4682#0" />
-                <element signature="e#5282#5561#0" />
+                <element signature="e#327#992#0" />
               </folding>
             </state>
           </provider>
@@ -217,13 +210,13 @@
       <window_info id="Favorites" order="2" sideWeight="0.5010482" side_tool="true" weight="0.29175475" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32866243" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32866243" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3299363" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3923567" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3923567" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -248,16 +241,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+        <state relative-caret-position="314">
+          <caret line="106" column="68" lean-forward="true" selection-start-line="106" selection-start-column="68" selection-end-line="106" selection-end-column="68" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#199#864#0" />
-            <element signature="e#3710#4776#0" />
-            <element signature="e#3917#4107#0" />
-            <element signature="e#4152#4589#0" />
-            <element signature="e#4617#4682#0" />
-            <element signature="e#5282#5561#0" />
+            <element signature="e#327#992#0" />
           </folding>
         </state>
       </provider>
