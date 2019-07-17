@@ -4,7 +4,8 @@ from subprocess import Popen, STDOUT, PIPE
 # TODO: add clargs and parseargs for the choices the user makes
 
 # TODO: let the user set squash_amount
-# The amount of commits to squash into the current one
+# The amount of commits to squash into a new one
+# Includes the current commit
 squash_amount = 7
 seperator = "# # # # # # # # # # # # # # #"
 
@@ -129,7 +130,8 @@ def main():
 
     # The commits list doesn't include the newest commit- now it's purely commits to delete
     for c in commits:
-        print(git('show', '--no-patch', '--format=%B', c[2:9])[0])
+        SHA = c[2:9]
+        print(SHA)
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
