@@ -123,9 +123,9 @@ def main():
           "Enter to begin squash")
     print(seperator)
 
-    # TODO: I think it might be possible that there are no new changes to add, which would make these two fail
+    # TODO: I think it might be possible that there are no new changes to add, which would make these two cancel
     git('add', '.')
-    git('commit', '-m', '"' + new_mes + '"')
+    git('commit', '-m', new_mes)
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
