@@ -6,7 +6,7 @@ from subprocess import Popen, STDOUT, PIPE
 # TODO: let the user set squash_amount
 # The amount of commits to squash into a new one
 # Includes the current commit
-squash_amount = 7
+squash_amount = 3
 seperator = "# # # # # # # # # # # # # # #"
 
 
@@ -75,7 +75,7 @@ def main():
 
     # Get the commits requested for squashing
     # If squash_amount is higher than the amount of what's available, it'll just get everything
-    commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount+1]
+    commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount]
     # Make a list of their messages
     messages = []
     for c in commits:
@@ -104,7 +104,7 @@ def main():
     for c in commits:
         SHA = c[2:9]
         print(SHA)
-        # git('rebase', 'p', '--onto', SHA + '^', 'SHA')
+        git('rebase', '--rebase-merges', '--onto', SHA + '^', SHA)
 
 
 # narrow it down to the ones at index 1 and 2
