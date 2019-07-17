@@ -1,6 +1,9 @@
 import sys
 from subprocess import Popen, STDOUT, PIPE
 
+# TODO: add clargs and parseargs for the choices the user makes
+
+# TODO: let the user set squash_amount
 # The amount of commits to squash into the current one
 squash_amount = 7
 seperator = "# # # # # # # # # # # # # # #"
@@ -41,13 +44,13 @@ def main():
     print("Aww yeah!")
 
     git('fetch', 'origin')
-    commitsee = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
+    '''commitsee = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
 
     # first_commit_on_branch = iter(commit for commit in commits if commit.startswith('<'))[1:]
     first_commit_on_branch = ""
     for commit in commitsee:
         if commit.startswith('<'):
-            first_commit_on_branch = commit
+            first_commit_on_branch = commit'''
 
     '''
     relation = 'HEAD'
@@ -66,20 +69,30 @@ def main():
         relation = 'HEAD~' + str(times_back)
         '''
 
+    # TODO: If the branches of commits and their hashes are important for the user to see, move these "messages" to
+    #  where they must be used. Don't print them here either, instead just print the results of this log command....
+
+    # Get the commits requested for squashing
+    # If squash_amount is higher than the amount of what's available, it'll just get everything
     commits = git('log', '--graph', '--decorate', '--oneline')[:squash_amount+1]
-    print(seperator)
-    print("Commit Messages (new to old):")
-    print(seperator)
+    # Make a list of their messages
     messages = []
     for thing in commits:
-        # TODO: stop using hardcoding like this and use that one function to get the commit message or whatever
-        messages.append(thing[10:])
-        print(thing[10:])
+        message = git('show', '--no-patch', '--format=%B', thing[2:9])[0]
+        messages.append(message)
 
+    # Print the messages
     print(seperator)
+    print("Messages of squashing commits (new to old):")
+    print(seperator)
+    for message in messages:
+        print(message)
+
+    print("\n" + seperator)
     new_mes = ""
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
+        # TODO: Figure out that one way of accepting multi-line input (something with Ctrl+D)
         new_mes = input("Write new message below, enter to submit\n")
         print("Cool, thanks...\n" + new_mes)
 
@@ -94,20 +107,19 @@ def main():
         else:
             print("Combining messages...")
             for m in messages:
-                new_mes += m + "\n"
-            new_mes = new_mes[:-1]
+                new_mes += m + "\n---\n"
+            new_mes = new_mes[:-5]
 
     else:
-        print("Input not accepted, cancelling squish")
+        print("Input not accepted, cancelling squash")
         quit()
 
-    print(seperator)
+    print("\n" + seperator)
     print("Squashed commit message:")
     print(seperator)
     print(new_mes)
-
-    # [2:9] is the part with the hash
-    # print(thingymabob[0][2:9])
+    print("\n" + seperator)
+    input("Enter to begin squash")
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
@@ -124,7 +136,8 @@ def main():
 
     # rev-parse HEAD gets the most recent commit's hash or something
     # change HEAD to something else to get that commit's has or whatever
-    '''boop = git('rev-parse', 'HEAD')[0]
+    '''boop = git('rev-parse', 'HEAD')[-1]
+    print(boop)
     msg_of_first_commit = '\n'.join(git('show', '--no-patch', '--format=%B', boop))
     print(msg_of_first_commit)'''
 

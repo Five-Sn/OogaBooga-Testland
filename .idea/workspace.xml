@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommitSquasher.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommitSquasher.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,10 +39,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+            <state relative-caret-position="239">
+              <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#2337#2443#0" />
+                <element signature="e#2591#3134#0" />
+                <element signature="e#3003#3064#0" />
               </folding>
             </state>
           </provider>
@@ -249,10 +251,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+        <state relative-caret-position="239">
+          <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#2337#2443#0" />
+            <element signature="e#2591#3134#0" />
+            <element signature="e#3003#3064#0" />
           </folding>
         </state>
       </provider>
