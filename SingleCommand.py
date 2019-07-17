@@ -34,7 +34,7 @@ def git(*arguments):
 
 
 def main():
-    git('rebase', '-s', '--onto', 'd16cc^', 'd16cc')
+    git('rebase', '-s', '--onto', '92813^', '92813')
 
 
 if __name__ == "__main__":
