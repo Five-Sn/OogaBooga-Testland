@@ -120,6 +120,9 @@ def main():
     print(new_mes)
     print("\n" + seperator)
     input("Enter to begin squash")
+    print(seperator)
+
+    git('commit', 'm', '"' + new_mes + '"')
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
