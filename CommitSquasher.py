@@ -89,42 +89,14 @@ def main():
     for message in messages:
         print(message)
 
+    # Get a new message for the new commit
     print("\n" + seperator)
-    new_mes = ""
-    write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
-    if 'y' == write_new:
-        # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
-        new_mes = input("Write new message below, enter to submit\n")
-        print("Message taken.")
+    new_mes = get_new_message(messages)
+    confirm_squash(new_mes)
 
-    elif 'n' == write_new:
-        use_latest = input("Use latest message? (y) Will combine all messages otherwise ").lower()
-        # Combine messages
-        if 'y' == use_latest:
-            print("Using latest message")
-            new_mes = messages[0]
-
-        # Use the latest message
-        else:
-            print("Combining messages...")
-            for m in messages:
-                new_mes += m + "\n---\n"
-            new_mes = new_mes[:-5]
-
-    else:
-        print("Input not accepted, cancelling squash")
-        quit()
-
-    print("\n" + seperator)
-    print("Squashed commit message:")
-    print(seperator)
-    print(new_mes)
-    print("\n" + seperator)
-    input("Squashing will add and commit any unstaged changes.\n"
-          "Enter to begin squash")
-    print(seperator)
-
+    # Commit the current files with the message chosen above
     # TODO: If there are no new changes to add (and the commit won't be new), these two will cancel themselves
+    #  Maybe also don't add EVERYTHING? Right now it just helps ensure the commit is new
     git('add', '.')
     git('commit', '-m', new_mes)
 
@@ -132,22 +104,72 @@ def main():
     for c in commits:
         SHA = c[2:9]
         print(SHA)
+        # git('rebase', 'p', '--onto', SHA + '^', 'SHA')
 
-    # narrow it down to the ones at index 1 and 2
-    # thingymabob = thingymabob[1:3]
 
-    # git branch -f master HEAD~3
-    # sets the master branch to being at the commit at HEAD~3
+# narrow it down to the ones at index 1 and 2
+# thingymabob = thingymabob[1:3]
 
-    # git log --graph --decorate --oneline
-    # gets a list of commits with their SHA hash IDs
-    # these commits are all those of the current branch and whatever it inherited from branching off
+# git branch -f master HEAD~3
+# sets the master branch to being at the commit at HEAD~3
 
-    # git rebase -p --onto xsha^ xsha
-    # deletes the commit with the hash xsha
+# git log --graph --decorate --oneline
+# gets a list of commits with their SHA hash IDs
+# these commits are all those of the current branch and whatever it inherited from branching off
 
-    # rev-parse HEAD gets the most recent commit's hash or something
-    # change HEAD to something else to get that commit's has or whatever
+# git rebase -p --onto xsha^ xsha
+# deletes the commit with the hash xsha
+
+# rev-parse HEAD gets the most recent commit's hash or something
+# change HEAD to something else to get that commit's has or whatever
+
+
+# Returns a new message for a commit determined by user input and/or
+# 'olds' should be the current list of commits to be squashed
+# The user can write a new message, combine 'olds', or use the latest message in 'olds'
+def get_new_message(olds):
+    new = ""
+    write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
+    if 'y' == write_new:
+        # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
+        new = input("Write new message below, enter to submit\n")
+        print("Message taken.")
+
+    elif 'n' == write_new:
+        use_latest = input("Use latest message? (y) Will combine all messages otherwise ").lower()
+        # Combine messages
+        if 'y' == use_latest:
+            print("Using latest message")
+            new = olds[0]
+
+        # Use the latest message
+        else:
+            print("Combining messages...")
+            for m in olds:
+                new += m + "\n---\n"
+            new = new[:-5]
+
+    else:
+        print("Input not accepted, cancelling squash")
+        quit()
+
+    # Make sure the message isn't empty or blank by saying that there's no message, thus giving it a message
+    # ...but there's still no message
+    if "" == new.replace(' ', ''):
+        new = "[No message]"
+    return new
+
+
+# Prints the message set for the new commit and waits for user input to continue
+def confirm_squash(message):
+    print("\n" + seperator)
+    print("Squashed commit message:")
+    print(seperator)
+    print(message)
+    print("\n" + seperator)
+    input("Squashing will add and commit any unstaged changes.\n"
+          "Enter to begin squash")
+    print(seperator)
 
 
 if __name__ == "__main__":
