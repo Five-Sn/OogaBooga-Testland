@@ -92,9 +92,9 @@ def main():
     new_mes = ""
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
-        # TODO: Figure out that one way of accepting multi-line input (something with Ctrl+D)
+        # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
         new_mes = input("Write new message below, enter to submit\n")
-        print("Cool, thanks...\n" + new_mes)
+        print("Message taken.")
 
     elif 'n' == write_new:
         use_latest = input("Use latest message? (y) Will combine all messages otherwise ").lower()
@@ -128,6 +128,7 @@ def main():
     git('commit', '-m', new_mes)
 
     cool = git('log', '--graph', '--decorate', '--oneline')
+    print(cool[1:])
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
