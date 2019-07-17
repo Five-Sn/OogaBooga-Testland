@@ -5,11 +5,7 @@ from time import sleep
 # TODO: add clargs and parseargs for the choices the user makes
 # gnarly nasty
 
-# TODO: let the user set squash_amount
-# The amount of commits to squash into a new one
-# Includes the current commit
-squash_amount = 3
-seperator = "# # # # # # # # # # # # # # #"
+seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 
 
 def git(*arguments):
@@ -44,33 +40,19 @@ def git(*arguments):
 
 
 def main():
-    print("Aww yeah!")
+    print('Prepare to squash some commits.')
+
+    # Get the amount of commits (including current) to squash
+    squash_amount = 0
+    while squash_amount <= 1:
+        print("How many commits (including the current one) on this branch will you squash?")
+        try:
+            squash_amount = int(input("Two minimum "))
+        except:
+            print("Invalid input")
+            squash_amount = 0
 
     git('fetch', 'origin')
-    '''commitsee = git('rev-list', '--left-right', '--reverse', 'HEAD...{0}'.format("yeetus"))
-
-    # first_commit_on_branch = iter(commit for commit in commits if commit.startswith('<'))[1:]
-    first_commit_on_branch = ""
-    for commit in commitsee:
-        if commit.startswith('<'):
-            first_commit_on_branch = commit'''
-
-    '''
-    relation = 'HEAD'
-    # this loop gets and prints every commit message
-    times_back = 0
-    while not times_back >= squash_amount - 1:
-        try:
-            # printing this commit gives a long hashy-hash
-            commit = git('rev-parse', relation)[0]
-            commit_msg = str(git('show', '--no-patch', '--format=%B', commit)[0])
-            print("# # # # # # # # # # # # # # #\n" + commit_msg + "\n# # # # # # # # # # # # # # #\n")
-        except Exception as e:
-            print('Exceptione: ' + str(e))
-            break
-        times_back += 1
-        relation = 'HEAD~' + str(times_back)
-        '''
 
     # TODO: If the branches of commits and their hashes are important for the user to see, move these "messages" to
     #  where they must be used. Don't print them here either, instead just print the results of this log command....
@@ -100,7 +82,7 @@ def main():
     # TODO: If there are no new changes to add (and the commit won't be new), these two will cancel themselves
     #  Maybe also don't add EVERYTHING? Right now it just helps ensure the commit is new
     git('add', '.')
-    git('commit', '-m', new_mes)
+    git('commit', '--allow-empty', '-m', new_mes)
 
     # Sleep for one second to give time for the commit to go through
     sleep(1)
