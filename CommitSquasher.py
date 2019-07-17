@@ -127,6 +127,8 @@ def main():
     git('add', '.')
     git('commit', '-m', new_mes)
 
+    cool = git('log', '--graph', '--decorate', '--oneline')
+
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
 
