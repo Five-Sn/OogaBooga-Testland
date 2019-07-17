@@ -3,6 +3,7 @@ from subprocess import Popen, STDOUT, PIPE
 from time import sleep
 
 # TODO: add clargs and parseargs for the choices the user makes
+# gnarly nasty
 
 # TODO: let the user set squash_amount
 # The amount of commits to squash into a new one
