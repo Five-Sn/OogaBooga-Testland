@@ -83,7 +83,7 @@ def main():
 
     # Print the messages
     print(seperator)
-    print("Messages of squashing commits (new to old):")
+    print("Messages of commits to be squashed (new to old):")
     print(seperator)
     for message in messages:
         print(message)
@@ -119,10 +119,13 @@ def main():
     print(seperator)
     print(new_mes)
     print("\n" + seperator)
-    input("Enter to begin squash")
+    input("Squashing will add and commit any unstaged changes.\n"
+          "Enter to begin squash")
     print(seperator)
 
-    git('commit', 'm', '"' + new_mes + '"')
+    # TODO: I think it might be possible that there are no new changes to add, which would make these two fail
+    git('add', '.')
+    git('commit', '-m', '"' + new_mes + '"')
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
@@ -139,10 +142,6 @@ def main():
 
     # rev-parse HEAD gets the most recent commit's hash or something
     # change HEAD to something else to get that commit's has or whatever
-    '''boop = git('rev-parse', 'HEAD')[-1]
-    print(boop)
-    msg_of_first_commit = '\n'.join(git('show', '--no-patch', '--format=%B', boop))
-    print(msg_of_first_commit)'''
 
 
 if __name__ == "__main__":
