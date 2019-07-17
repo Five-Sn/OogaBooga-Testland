@@ -123,7 +123,7 @@ def main():
           "Enter to begin squash")
     print(seperator)
 
-    # TODO: I think it might be possible that there are no new changes to add, which would make these two cancel
+    # TODO: If there are no new changes to add (and the commit won't be new), these two will cancel themselves
     git('add', '.')
     git('commit', '-m', new_mes)
 
