@@ -127,8 +127,8 @@ def main():
     git('add', '.')
     git('commit', '-m', new_mes)
 
-    cool = git('log', '--graph', '--decorate', '--oneline')
-    print(cool[1:])
+    for stuff in commits:
+        print(git('show', '--no-patch', '--format=%B', stuff[2:9])[0])
 
     # narrow it down to the ones at index 1 and 2
     # thingymabob = thingymabob[1:3]
