@@ -1,6 +1,8 @@
 import subprocess
 from string import ascii_letters
 from random import choice
+from time import sleep
+commits = 5
 name_length = 5
 # There are 380,000,000+ possible names!
 
@@ -21,4 +23,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    i = 0
+    while i < commits:
+        main()
+        sleep(3)
+        i += 1
