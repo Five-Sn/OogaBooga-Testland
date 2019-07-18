@@ -97,7 +97,9 @@ def main():
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
         sleep(2)
 
-    git('checkout', new_hash)
+    git('checkout', 'master')
+    sleep(5)
+    git('checkout', 'yeetus')
     print('groovy gnarly')
 
 
