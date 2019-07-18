@@ -6,7 +6,7 @@ name_length = 5
 
 
 def main():
-    f = open("RandomlyGeneratedCommitName.txt", "w+")
+    # f = open("RandomlyGeneratedCommitName.txt", "w+")
 
     name = ""
     char_amount = 0
@@ -15,9 +15,9 @@ def main():
         name += letter
         char_amount += 1
 
-    f.write(name)
+    # f.write(name)
     subprocess.call('git add .'.split())
-    subprocess.call(['git', 'commit', '-m', 'New commit for testing: ' + name])
+    subprocess.call(['git', 'commit', '--allow-empty', '-m', 'New commit for testing: ' + name])
 
 
 if __name__ == "__main__":
