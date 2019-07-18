@@ -25,13 +25,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
+            <state relative-caret-position="259">
+              <caret line="103" column="38" lean-forward="true" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#263#928#0" />
-                <element signature="e#3912#4974#0" />
-                <element signature="e#5091#5342#0" />
+                <element signature="e#3903#4965#0" />
+                <element signature="e#5082#5333#0" />
               </folding>
             </state>
           </provider>
@@ -242,7 +242,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1883" y="-514" width="1469" height="946" extended-state="0" />
+    <frame x="-1846" y="-523" width="1469" height="946" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24033149" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -265,13 +265,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/SingleCommand.py" />
-    <entry file="file://$PROJECT_DIR$/RandomlyGeneratedCommitName.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ungui.py" />
     <entry file="file://$PROJECT_DIR$/BestScript.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -287,15 +280,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RandomlyGeneratedCommitName.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
+        <state relative-caret-position="259">
+          <caret line="103" column="38" lean-forward="true" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#263#928#0" />
-            <element signature="e#3912#4974#0" />
-            <element signature="e#5091#5342#0" />
+            <element signature="e#3903#4965#0" />
+            <element signature="e#5082#5333#0" />
           </folding>
         </state>
       </provider>
