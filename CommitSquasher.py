@@ -100,6 +100,9 @@ def main():
         sleep(3)
 
 
+# TODO: WHEN REBASING, HEAD GOES BACK TO THE COMMIT BEFORE THE REBASE. IT'S NOT ACTUALLY DELETED.
+#  CHECKING OUT THE NEW COMMIT JUST SETS THE HEAD BACK AT THE FRONT, WITH ALL THE SAME COMMITS BEHIND IT.
+
 # narrow it down to the ones at index 1 and 2
 # thingymabob = thingymabob[1:3]
 
