@@ -82,8 +82,10 @@ def main():
     # Commit the current files with the message chosen above
     # TODO: Don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique so they
     #  could actually be commited.
+    git('branch')
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
+    git('branch')
 
     # Hash of the commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
