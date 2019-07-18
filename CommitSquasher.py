@@ -104,7 +104,7 @@ def main():
     sleep(5)
     git('checkout', 'yeetus')
     git('merge', new_hash)
-    print('sick nasty')
+    print('oh snap!')
 
 
 # narrow it down to the ones at index 1 and 2
