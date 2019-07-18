@@ -103,6 +103,7 @@ def main():
     git('checkout', 'master')
     sleep(5)
     git('checkout', 'yeetus')
+    git('merge', new_hash)
     print('sick nasty')
 
 
