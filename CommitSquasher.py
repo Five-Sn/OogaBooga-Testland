@@ -97,7 +97,7 @@ def main():
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
         sleep(2)
 
-    git('checkout', new_hash)
+    git('checkout', 'yeetus')
 
 
 # narrow it down to the ones at index 1 and 2
