@@ -3,7 +3,7 @@ from subprocess import Popen, STDOUT, PIPE
 from time import sleep
 
 # TODO: add clargs and parseargs for the choices the user makes
-
+# goose
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 
 
@@ -98,10 +98,6 @@ def main():
         print(h)
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
         sleep(3)
-
-    git('checkout', 'yeetus')
-    sleep(5)
-    git('merge', new_hash)
 
 
 # narrow it down to the ones at index 1 and 2
