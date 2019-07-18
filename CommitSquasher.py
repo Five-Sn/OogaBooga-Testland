@@ -84,6 +84,8 @@ def main():
     #  could actually be commited.
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
+    git('push', '--force')
+    sleep(5)
 
     # Hash of the commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
