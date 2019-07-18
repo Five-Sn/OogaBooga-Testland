@@ -82,10 +82,8 @@ def main():
     # Commit the current files with the message chosen above
     # TODO: Don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique so they
     #  could actually be commited.
-    git('branch')
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
-    git('branch')
 
     # Hash of the commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
@@ -99,7 +97,8 @@ def main():
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
         sleep(2)
 
-    git('checkout', 'yeetus')
+    git('checkout', new_hash)
+    print('groovy gnarly')
 
 
 # narrow it down to the ones at index 1 and 2
