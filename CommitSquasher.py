@@ -84,11 +84,11 @@ def main():
     #  could actually be commited.
     git('add', '.')
     git('commit', '--allow-empty', '-m', new_mes)
-    git('push', '--force')
     sleep(5)
 
     # Hash of the commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
+    git('log', '--graph', '--oneline')
 
     # Sleep for two seconds to give time for the commit to go through
     sleep(2)
@@ -97,7 +97,7 @@ def main():
     for h in hashes:
         print(h)
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
-        sleep(2)
+        sleep(3)
 
     git('checkout', 'master')
     sleep(5)
