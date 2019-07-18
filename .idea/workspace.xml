@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/RandomlyGeneratedCommitName.txt" beforeDir="false" afterPath="$PROJECT_DIR$/RandomlyGeneratedCommitName.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +24,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
@@ -32,8 +32,6 @@
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#263#928#0" />
-                <element signature="e#3903#4965#0" />
-                <element signature="e#5082#5333#0" />
               </folding>
             </state>
           </provider>
@@ -51,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RandomlyGeneratedCommitName.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="17" selection-start-column="17" selection-end-column="17" />
+              <caret column="17" lean-forward="true" selection-start-column="17" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -100,6 +98,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -111,7 +110,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,15 +246,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1846" y="-523" width="1469" height="946" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1770" y="-505" width="1469" height="946" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24033149" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24033149" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5010482" side_tool="true" weight="0.29175475" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32786885" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32786885" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -290,6 +287,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RandomlyGeneratedCommitName.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" lean-forward="true" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -297,16 +301,7 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#263#928#0" />
-            <element signature="e#3903#4965#0" />
-            <element signature="e#5082#5333#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RandomlyGeneratedCommitName.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
         </state>
       </provider>
     </entry>
