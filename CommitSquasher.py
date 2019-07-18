@@ -100,11 +100,10 @@ def main():
         git('rebase', '--rebase-merges', '--onto', h + '^', h)
         sleep(3)
 
-    git('checkout', 'master')
-    sleep(5)
     git('checkout', 'yeetus')
+    sleep(5)
     git('merge', new_hash)
-    print('oh snap!')
+    print('OH SNAP! OH SNAP, I SAID!')
 
 
 # narrow it down to the ones at index 1 and 2
