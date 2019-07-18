@@ -102,7 +102,7 @@ def main():
     git('checkout', 'master')
     sleep(5)
     git('checkout', 'yeetus')
-    print('groovy gnarly')
+    print('gnarly groovy')
 
 
 # narrow it down to the ones at index 1 and 2
