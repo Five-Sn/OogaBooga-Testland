@@ -10,7 +10,7 @@ def main():
     name = ""
     char_amount = 0
     while char_amount < name_length:
-        letter = andom.choice(ascii_letters)
+        letter = random.choice(ascii_letters)
         name += letter
         char_amount += 1
 
