@@ -1,19 +1,30 @@
 import sys
+import argparse
 from subprocess import Popen, STDOUT, PIPE
 from time import sleep
 
-# TODO: add clargs and parseargs for the choices the user makes
-# gnarly nasty
-
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
+# TODO: Let the user provide a directory or repo, branch, and specific commit to start on
+main_branch = "yeetus"
+commit_branch = main_branch + "_CommitSquasher"
+
+parser = argparse.ArgumentParser(description="Squash a specified amount of commits on this branch. The commits "
+                                             "considered start at HEAD and get older.")
+parser.add_argument('message', metavar='M', type=str, nargs='?',
+                    help='The message to give the commit made of squashed commits. Must be in quotes when calling this '
+                         'script.')
+parser.add_argument('squash_num', metavar='N', type=int, nargs='?',
+                    help='The number of commits (including the HEAD commit) to squash.')
 
 
+# Runs a git command, prints it and the result, and returns a list of lines in the result
+# ex. git('pull', '--force')
+# TODO: Understand this thing (proc.close to allow command after command?)
 def git(*arguments):
     print(arguments)
     cmdline = ['git']
     cmdline.extend(arguments)
 
-    # print('!GIT COMMAND!')
     print(' '.join(arg for arg in cmdline))
 
     proc = Popen(cmdline, stdout=PIPE, stderr=STDOUT)
@@ -35,37 +46,43 @@ def git(*arguments):
         print('Git command terminated with exit code {0}.'.format(return_code))
         sys.exit(1)
 
-    # print('!GIT COMMAND!')
     return output
 
 
-def main():
-    print('Prepare to squash some commits.')
+def main(args):
+    git('checkout', main_branch)
+    print('Prepare to "squash" some commits.')
 
     # Get the amount of commits (including current) to squash
     squash_amount = 0
+    # Use clargs
+    if args.squash_num and args.squash_num > 1:
+        squash_amount = args.squash_num
+    # Use user using user input
     while squash_amount <= 1:
         print("How many commits (including the current one) on this branch will you squash?")
         try:
             squash_amount = int(input("Two minimum "))
-        except:
+        except ValueError:
             print("Invalid input")
+            print(seperator)
             squash_amount = 0
 
     git('fetch', 'origin')
 
-    # TODO: With the next two git commands, the user will see a list of all the hashes and messeges of the requested
-    #  commits. Use the commented-out command between them for more detail
-
-    # Get the first 7 characters of the hashes of the requested commits
-    # If squash_amount is higher than the amount of what's available, it'll just get everything
+    # Get the hashes of the commits requested for squashing (7 character versions)
+    # If squash_amount is higher than the amount of what's available, it'll automatically get everything
     hashes = git('log', '--pretty=format:%h')[:squash_amount]
-    # git('log', '--graph', '--decorate', '--oneline')
+
     # Make a list of their messages
     messages = []
     for h in hashes:
         message = git('show', '--no-patch', '--format=%B', h)[0]
         messages.append(message)
+
+    # TODO possibly: With the two most recent git commands^, the user will see a list of all the hashes and messages of
+    #  the requested commits. Use this command to print more detail:
+    # git('log', '--graph', '--decorate', '--oneline')
 
     # Print the messages
     print(seperator)
@@ -76,69 +93,36 @@ def main():
 
     # Get a new message for the new commit
     print("\n" + seperator)
-    new_mes = get_new_message(messages)
+    new_mes = get_new_message(messages, args.message)
     confirm_squash(new_mes)
 
-    # Commit the current files with the message chosen above
-    # TODO: Don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique so they
-    #  could actually be commited.
-    git('checkout', 'yeetus')
-    git('add', '.')
-    git('commit', '--allow-empty', '-m', new_mes)
-    sleep(5)
-
-    # Hash of the commit that was just made:
-    new_hash = git('log', '--pretty=format:%h')[0]
-    git('log', '--graph', '--oneline')
-
-    # Sleep for two seconds to give time for the commit to go through
-    sleep(2)
-
-    # The commits list doesn't include the newest commit- now it's purely commits to delete
-    for h in hashes:
-        print(h)
-        git('rebase', '--rebase-merges', '--onto', h + '^', h)
-        sleep(3)
-
-    git('checkout', 'master')
-    sleep(5)
-    git('checkout', 'yeetus')
-    print('sick nasty')
+    # Squash the squash
+    squash(hashes[len(hashes) - 1], new_mes)
+    print(seperator)
+    input("Squashing complete. Enter to quit.")
 
 
-# narrow it down to the ones at index 1 and 2
-# thingymabob = thingymabob[1:3]
-
-# git branch -f master HEAD~3
-# sets the master branch to being at the commit at HEAD~3
-
-# git log --graph --decorate --oneline
-# gets a list of commits with their SHA hash IDs
-# these commits are all those of the current branch and whatever it inherited from branching off
-
-# git rebase -p --onto xsha^ xsha
-# deletes the commit with the hash xsha
-
-# rev-parse HEAD gets the most recent commit's hash or something
-# change HEAD to something else to get that commit's has or whatever
-
-
-# Returns a new message for a commit determined by user input and/or
-# 'olds' should be the current list of commits to be squashed
+# Returns a new message for a commit determined by user input
 # The user can write a new message, combine 'olds', or use the latest message in 'olds'
-def get_new_message(olds):
+# 'olds' should be the current list of commits to be squashed
+def get_new_message(olds, arg_message):
     new = ""
+    # Set the message to one given in the command line, if possible
+    if arg_message:
+        new = arg_message
+        return new
+    # Otherwise, get one from the user
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
         # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
-        new = input("Write new message below, enter to submit\n")
-        print("Message taken.")
+        new = input("Write new message below, enter to submit.\n")
+        print("Message received.")
 
     elif 'n' == write_new:
-        use_latest = input("Use latest message? (y) Will combine all messages otherwise ").lower()
+        use_latest = input("Use latest message? (y) Or combine all messages? (any other input) ").lower()
         # Combine messages
         if 'y' == use_latest:
-            print("Using latest message")
+            print("Using latest message.")
             new = olds[0]
 
         # Use the latest message
@@ -149,7 +133,7 @@ def get_new_message(olds):
             new = new[:-5]
 
     else:
-        print("Input not accepted, cancelling squash")
+        print("Input not accepted, cancelling squash.")
         quit()
 
     # Make sure the message isn't empty or blank by saying that there's no message, thus giving it a message
@@ -160,6 +144,7 @@ def get_new_message(olds):
 
 
 # Prints the message set for the new commit and waits for user input to continue
+# 'message' is the new commit's set message
 def confirm_squash(message):
     print("\n" + seperator)
     print("Squashed commit message:")
@@ -167,9 +152,37 @@ def confirm_squash(message):
     print(message)
     print("\n" + seperator)
     input("Squashing will add and commit any unstaged changes.\n"
-          "Enter to begin squash")
+          "Enter to begin squash....")
     print(seperator)
 
 
+# Create the squashed commit in a temporary branch, revert commits in the main one, then cherry-pick the squashed commit
+# 'oldest_hash' is the SHA of the oldest commit to squash
+# 'squash_mes' is the new commit's message
+def squash(oldest_hash, squash_mes):
+    # Save and commit the files to the current branch so a temporary one can be checked out
+    # TODO: Give the user a choice between adding or dropping unstaged files
+    git('checkout', main_branch)
+    git('add', '.')
+    git('commit', '--allow-empty', '-m', 'Saving changes for: ' + squash_mes)
+    sleep(1)
+    git('checkout', '-b', commit_branch)
+    sleep(3)
+    # Save changes in the actual squashed commit on this temp branch
+    git('commit', '--allow-empty', '-m', squash_mes)
+    sleep(1)
+    # Hash of the squashed commit that was just made:
+    new_hash = git('log', '--pretty=format:%h')[0]
+    # Return to the main branch, reset over the the "squashing" commits, then bring the actual commit over
+    git('checkout', main_branch)
+    sleep(3)
+    git('reset', oldest_hash + '^')
+    git('cherry-pick', '--allow-empty', new_hash)
+    sleep(1)
+    # Delete the temporary branch
+    git('branch', '-D', commit_branch)
+
+
 if __name__ == "__main__":
-    main()
+    clargs = parser.parse_args()
+    main(clargs)
