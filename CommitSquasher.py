@@ -1,12 +1,19 @@
 import sys
+import argparse
 from subprocess import Popen, STDOUT, PIPE
 from time import sleep
-
-# TODO: add clargs and parseargs for the choices the user makes
 
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 main_branch = "yeetus"
 commit_branch = main_branch + "_CommitSquasher"
+
+parser = argparse.ArgumentParser(description="Squash a specified amount of commits on this branch. The commits "
+                                             "considered start at HEAD and get older.")
+parser.add_argument('message', metavar='M', type=str, nargs='?',
+                    help='The message to give the commit made of squashed commits. Must be in quotes when calling this '
+                         'script.')
+parser.add_argument('squash_num', metavar='N', type=int, nargs='?',
+                    help='The number of commits (including the HEAD commit) to squash.')
 
 
 def git(*arguments):
@@ -38,17 +45,25 @@ def git(*arguments):
     return output
 
 
-def main():
+def main(args):
     print('Prepare to "squash" some commits.')
+
+    if args.message:
+        print(args.message)
 
     # Get the amount of commits (including current) to squash
     squash_amount = 0
+    # Use clargs
+    if args.squash_num and args.squash_num > 1:
+        squash_amount = args.squash_num
+    # Use user using user input
     while squash_amount <= 1:
         print("How many commits (including the current one) on this branch will you squash?")
         try:
             squash_amount = int(input("Two minimum "))
-        except:
+        except ValueError:
             print("Invalid input")
+            print(seperator)
             squash_amount = 0
 
     git('fetch', 'origin')
@@ -76,7 +91,7 @@ def main():
 
     # Get a new message for the new commit
     print("\n" + seperator)
-    new_mes = get_new_message(messages)
+    new_mes = get_new_message(messages, args.message)
     confirm_squash(new_mes)
 
     # Squash the squash
@@ -88,8 +103,13 @@ def main():
 # Returns a new message for a commit determined by user input
 # The user can write a new message, combine 'olds', or use the latest message in 'olds'
 # 'olds' should be the current list of commits to be squashed
-def get_new_message(olds):
+def get_new_message(olds, arg_message):
     new = ""
+    # Set the message to one given in the command line, if possible
+    if arg_message:
+        new = arg_message
+        return new
+    # Otherwise, get one from the user
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
         # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
@@ -139,8 +159,7 @@ def confirm_squash(message):
 # 'squash_mes' is the new commit's message
 def squash(oldest_hash, squash_mes):
     # Save and commit the files to the current branch so a temporary one can be checked out
-    # TODO: Maybe don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique
-    #  so they could actually be commited.
+    # TODO: Give the user a choice between adding or dropping unstaged files
     git('checkout', main_branch)
     git('add', '.')
     git('commit', '--allow-empty', '-m', 'Saving changes for: ' + squash_mes)
@@ -163,4 +182,5 @@ def squash(oldest_hash, squash_mes):
 
 
 if __name__ == "__main__":
-    main()
+    clargs = parser.parse_args()
+    main(clargs)
