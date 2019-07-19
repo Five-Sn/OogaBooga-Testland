@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="" />
+    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommitCreator.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommitCreator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommitSquasher.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommitSquasher.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,14 +17,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+            <state relative-caret-position="-713">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#1111#1356#0" />
                 <element signature="e#4124#5186#0" />
                 <element signature="e#5303#5554#0" />
               </folding>
@@ -28,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitCreator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="-57">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -67,8 +70,8 @@
         <option value="$PROJECT_DIR$/SingleCommand.py" />
         <option value="$PROJECT_DIR$/RandomlyGeneratedCommitName.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/CommitCreator.py" />
         <option value="$PROJECT_DIR$/CommitSquasher.py" />
+        <option value="$PROJECT_DIR$/CommitCreator.py" />
       </list>
     </option>
   </component>
@@ -230,14 +233,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24524313" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24524313" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5010482" side_tool="true" weight="0.29175475" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290398" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993094" visible="true" weight="0.7592357" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993094" visible="true" weight="0.42165604" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -269,25 +273,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CommitCreator.py">
+    <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="-713">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#4124#5186#0" />
+            <element signature="e#5303#5554#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
+    <entry file="file://$PROJECT_DIR$/CommitCreator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="-57">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#1111#1356#0" />
-            <element signature="e#4124#5186#0" />
-            <element signature="e#5303#5554#0" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
