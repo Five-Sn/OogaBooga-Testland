@@ -96,7 +96,7 @@ def main():
     # The commits list doesn't include the newest commit- now it's purely commits to delete
     for h in hashes:
         print(h)
-        git('rebase', '--rebase-merges', '--onto', h + '^', h)
+        git('rebase', '--rebase-merges', '--onto', h + '^')
         sleep(3)
 
 
