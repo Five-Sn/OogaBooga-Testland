@@ -83,21 +83,27 @@ def main():
     #  could actually be commited.
     git('checkout', 'yeetus')
     git('add', '.')
+    git('commit', '--allow-empty', '-m', 'Saving changes for: ' + new_mes)
+    sleep(1)
+    git('checkout', '-b', 'CommitSquasher_SquashedCommit')
+    sleep(3)
     git('commit', '--allow-empty', '-m', new_mes)
-    sleep(5)
-
+    sleep(1)
     # Hash of the commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
-    git('log', '--graph', '--oneline')
+    # TODO: Make this more flexible:
+    git('checkout', 'yeetus')
 
     # Sleep for two seconds to give time for the commit to go through
-    sleep(2)
+    sleep(3)
 
     # The commits list doesn't include the newest commit- now it's purely commits to delete
     for h in hashes:
         print(h)
         git('rebase', '--rebase-merges', '--onto', h + '^')
         sleep(3)
+
+    git('cherry-pick', new_hash)
 
 
 # TODO: WHEN REBASING, HEAD GOES BACK TO THE COMMIT BEFORE THE REBASE. IT'S NOT ACTUALLY DELETED.
