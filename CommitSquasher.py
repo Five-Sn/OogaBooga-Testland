@@ -39,7 +39,7 @@ def git(*arguments):
 
 
 def main():
-    print('Prepare to squash some commits.')
+    print('Prepare to "squash" some commits.')
 
     # Get the amount of commits (including current) to squash
     squash_amount = 0
@@ -53,18 +53,19 @@ def main():
 
     git('fetch', 'origin')
 
-    # TODO: With the next two git commands, the user will see a list of all the hashes and messeges of the requested
-    #  commits. Use the commented-out command between them for more detail
-
-    # Get the first 7 characters of the hashes of the requested commits
-    # If squash_amount is higher than the amount of what's available, it'll just get everything
+    # Get the hashes of the commits requested for squashing (7 character versions)
+    # If squash_amount is higher than the amount of what's available, it'll automatically get everything
     hashes = git('log', '--pretty=format:%h')[:squash_amount]
-    # git('log', '--graph', '--decorate', '--oneline')
+
     # Make a list of their messages
     messages = []
     for h in hashes:
         message = git('show', '--no-patch', '--format=%B', h)[0]
         messages.append(message)
+
+    # TODO possibly: With the two most recent git commands, the user will see a list of all the hashes and messages of
+    #  the requested commits. Use this command to print more detail:
+    # git('log', '--graph', '--decorate', '--oneline')
 
     # Print the messages
     print(seperator)
@@ -78,37 +79,15 @@ def main():
     new_mes = get_new_message(messages)
     confirm_squash(new_mes)
 
-    squash(hashes, new_mes)
+    # Squash the squash
+    squash(hashes[len(hashes) - 1], new_mes)
     print(seperator)
-    input("Squashing complete. Press enter to quit.")
-
-    '''# Save and commit the files to the current branch so a temporary one can be checked out
-    # TODO: Maybe don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique
-    #  so they could actually be commited.
-    git('checkout', main_branch)
-    git('add', '.')
-    git('commit', '--allow-empty', '-m', 'Saving changes for: ' + new_mes)
-    sleep(1)
-    git('checkout', '-b', commit_branch)
-    sleep(3)
-    # Save changes in the actual squashed commit on this temp branch
-    git('commit', '--allow-empty', '-m', new_mes)
-    sleep(1)
-    # Hash of the squashed commit that was just made:
-    new_hash = git('log', '--pretty=format:%h')[0]
-    # Return to the main branch, reset over the the "squashing" commits, then bring the actual commit over
-    git('checkout', main_branch)
-    sleep(3)
-    git('reset', hashes[len(hashes)-1] + '^')
-    git('cherry-pick', '--allow-empty', new_hash)
-    sleep(1)
-    # Delete the temporary branch
-    git('branch', '-D', commit_branch)'''
+    input("Squashing complete. Enter to quit.")
 
 
-# Returns a new message for a commit determined by user input and/or
-# 'olds' should be the current list of commits to be squashed
+# Returns a new message for a commit determined by user input
 # The user can write a new message, combine 'olds', or use the latest message in 'olds'
+# 'olds' should be the current list of commits to be squashed
 def get_new_message(olds):
     new = ""
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
@@ -143,6 +122,7 @@ def get_new_message(olds):
 
 
 # Prints the message set for the new commit and waits for user input to continue
+# 'message' is the new commit's set message
 def confirm_squash(message):
     print("\n" + seperator)
     print("Squashed commit message:")
@@ -150,11 +130,14 @@ def confirm_squash(message):
     print(message)
     print("\n" + seperator)
     input("Squashing will add and commit any unstaged changes.\n"
-          "Enter to begin squash")
+          "Enter to begin squash....")
     print(seperator)
 
 
-def squash(SHA_list, squash_mes):
+# Create the squashed commit in a temporary branch, revert commits in the main one, then cherry-pick the squashed commit
+# 'oldest_hash' is the SHA of the oldest commit to squash
+# 'squash_mes' is the new commit's message
+def squash(oldest_hash, squash_mes):
     # Save and commit the files to the current branch so a temporary one can be checked out
     # TODO: Maybe don't add EVERYTHING. What to add instead? I dunno. Adding all used to be for making commits unique
     #  so they could actually be commited.
@@ -172,7 +155,7 @@ def squash(SHA_list, squash_mes):
     # Return to the main branch, reset over the the "squashing" commits, then bring the actual commit over
     git('checkout', main_branch)
     sleep(3)
-    git('reset', SHA_list[len(SHA_list) - 1] + '^')
+    git('reset', oldest_hash + '^')
     git('cherry-pick', '--allow-empty', new_hash)
     sleep(1)
     # Delete the temporary branch
