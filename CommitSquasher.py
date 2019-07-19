@@ -104,7 +104,8 @@ def main():
         sleep(3)'''
 
     git('reset', hashes[len(hashes)-1] + '^')
-    git('merge', 'CommitSquasher_SquashedCommit')
+    # git('merge', 'CommitSquasher_SquashedCommit')
+    git('cherry-pick', new_hash)
     git('branch', '-D', 'CommitSquasher_SquashedCommit')
 
 
