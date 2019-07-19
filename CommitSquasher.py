@@ -98,12 +98,14 @@ def main():
     sleep(3)
 
     # The commits list doesn't include the newest commit- now it's purely commits to delete
-    for h in hashes:
+    '''for h in hashes:
         print(h)
-        git('rebase', '--rebase-merges', '--onto', h + '^')
-        sleep(3)
+        git('rebase', '--rebase-merges', '--onto', h + '^', h)
+        sleep(3)'''
 
-    git('cherry-pick', new_hash)
+    git('reset', hashes[len(hashes)-1] + '^')
+    git('merge', 'CommitSquasher_SquashedCommit')
+    git('branch', '-D', 'CommitSquasher_SquashedCommit')
 
 
 # TODO: WHEN REBASING, HEAD GOES BACK TO THE COMMIT BEFORE THE REBASE. IT'S NOT ACTUALLY DELETED.
