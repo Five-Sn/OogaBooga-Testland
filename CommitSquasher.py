@@ -53,6 +53,7 @@ def git(*arguments):
 
 
 def main(args):
+    # TODO: Once the user is given the choice, make sure it's the right repository too
     git('checkout', main_branch)
     print('Prepare to "squash" some commits.')
 
@@ -97,6 +98,7 @@ def main(args):
     # Get a new message for the new commit
     print("\n" + seperator)
     new_mes = get_new_message(messages, args.message)
+    add_or_drop(new_mes)
     confirm_squash(new_mes)
 
     # Squash the squash
@@ -118,19 +120,18 @@ def get_new_message(olds, arg_message):
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
         # Get multiple lines of input, then add them together for the message
-        print("Write a new message below, Ctrl+D to submit, last line is excluded.")
+        print('Write a new message below, Ctrl+D to submit, write "done" on last line.')
         contents = []
         while True:
             # Ctrl + D interrupts input()
-            try:
-                msg_line = input()
-            except EOFError:
+            msg_line = input()
+            if msg_line == "done":
                 break
             contents.append(msg_line)
         new = "\n".join(contents)
 
     elif 'n' == write_new:
-        use_latest = input("Use latest message? (y) Or combine all messages? (any other input) ").lower()
+        use_latest = input("Use latest message (y) or combine all messages? (any other input) ").lower()
         # Combine messages
         if 'y' == use_latest:
             print("Using latest message.")
@@ -167,16 +168,44 @@ def confirm_squash(message):
     print(seperator)
 
 
+# If there are unstaged changes, add or drop them (whichever the user says)
+def add_or_drop(squash_mes):
+    # TODO: Test unstaged and/or staged changes, adding, dropping, and no changes
+    print("Cool")
+    status = git('status')
+    if check_lines(status, "Changes not staged for commit") is True:
+        print("There are unstaged changes on this branch.")
+        do_add = input("Stage and commit (y) or drop unstaged files? (any other input) ").lower()
+        if 'y' == do_add:
+            print("Adding changes...")
+            git('add', '.')
+        else:
+            print("Dropping changes...")
+            git('stash', 'save', '--keep-index', '--include-untracked')
+            git('stash', 'drop')
+
+    sleep(1)
+    print("Committing if there are staged changes....")
+    git('commit', '-m', 'Saving changes for: ' + squash_mes)
+    sleep(1)
+
+    quit()
+    git('add', '.')
+
+
+# Searched the list lst for an index that matches desired
+def check_lines(lst, desired):
+    for line in lst:
+        if desired in line:
+            return True
+    return False
+
+
 # Create the squashed commit in a temporary branch, revert commits in the main one, then cherry-pick the squashed commit
 # 'oldest_hash' is the SHA of the oldest commit to squash
 # 'squash_mes' is the new commit's message
-def squash(oldest_hash, squash_mes):
+def squash(oldest_hash, squash_mes, do_add):
     # Save and commit the files to the current branch so a temporary one can be checked out
-    # TODO: Give the user a choice between adding or dropping unstaged files
-    git('checkout', main_branch)
-    git('add', '.')
-    git('commit', '--allow-empty', '-m', 'Saving changes for: ' + squash_mes)
-    sleep(1)
     git('checkout', '-b', commit_branch)
     sleep(3)
     # Save changes in the actual squashed commit on this temp branch
