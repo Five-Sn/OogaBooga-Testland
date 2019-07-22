@@ -3,11 +3,23 @@ import argparse
 from subprocess import Popen, STDOUT, PIPE
 import os
 
+# This program "squashes" a user-provided number of commits, including HEAD and those consecutively after it.
+# It saves any changes,
+# uses the desired commits' info to create a message for the squashed commit,
+# checks out a new, temporary branch and creates the squashed commit there,
+# returns to the main branch and reverts over the commits to be squashed,
+# cherry-picks the squashed commit,
+# and deletes the temporary branch.
+# So, yeah... it's not EXACTLY squashing, but it has the same effect.
+
 # Note: When manually squashing commits with an editor, you can still checkout the commits you squashed afterward. The
 # same happens with this script, so if manual squashing saves space, then I feel like this must as well.
 
+# Printed to make the console output a bit more readable
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
+# The branch this script will squash the commits of
 main_branch = "yeetus"
+# A temporary branch that will be created in the process
 commit_branch = main_branch + "_CommitSquasher"
 
 parser = argparse.ArgumentParser(description="Squash a specified amount of commits on this branch. The commits "
