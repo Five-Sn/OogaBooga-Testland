@@ -18,16 +18,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="192" column="10" selection-start-line="192" selection-start-column="10" selection-end-line="192" selection-end-column="10" />
+            <state relative-caret-position="420">
+              <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#1135#1742#0" />
+                <element signature="e#1995#3803#0" />
                 <element signature="e#4032#5438#0" />
                 <element signature="e#4342#4687#0" />
                 <element signature="e#4340#4745#0" />
                 <element signature="e#4765#4827#0" />
                 <element signature="e#5667#5940#0" />
+                <element signature="e#6134#6953#0" />
                 <element signature="e#6623#6715#0" />
                 <element signature="e#6244#7220#0" />
               </folding>
@@ -271,7 +273,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290398" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993094" visible="true" weight="0.42044136" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39953542" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290398" />
@@ -321,16 +323,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="192" column="10" selection-start-line="192" selection-start-column="10" selection-end-line="192" selection-end-column="10" />
+        <state relative-caret-position="420">
+          <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#1135#1742#0" />
+            <element signature="e#1995#3803#0" />
             <element signature="e#4032#5438#0" />
             <element signature="e#4342#4687#0" />
             <element signature="e#4340#4745#0" />
             <element signature="e#4765#4827#0" />
             <element signature="e#5667#5940#0" />
+            <element signature="e#6134#6953#0" />
             <element signature="e#6623#6715#0" />
             <element signature="e#6244#7220#0" />
           </folding>

@@ -169,6 +169,7 @@ def confirm_squash(message):
 
 
 # If there are unstaged changes, add or drop them (whichever the user says)
+# TODO: I'm pretty sure this works, but more testing couldn't hurt
 def add_or_drop(squash_mes):
     print("Cool")
     status = git('status')
@@ -187,9 +188,6 @@ def add_or_drop(squash_mes):
     print("Committing if there are staged changes....")
     git('commit', '-m', 'Saving changes for: ' + squash_mes)
     sleep(1)
-
-    print("I AM QUITTING")
-    quit()
 
 
 # Searched the list lst for an index that matches desired
@@ -224,4 +222,9 @@ def squash(oldest_hash, squash_mes, do_add):
 
 if __name__ == "__main__":
     clargs = parser.parse_args()
-    main(clargs)
+    # main(clargs)
+    git('checkout', 'master')
+    git('checkout', 'yeetus')
+    git('checkout', '-b', 'FAST')
+    git('checkout', 'yeetus')
+    git('branch', '-D', 'FAST')
