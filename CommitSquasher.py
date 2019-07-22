@@ -1,13 +1,12 @@
 import sys
 import argparse
 from subprocess import Popen, STDOUT, PIPE
-from time import sleep
+import os
 
 # Note: When manually squashing commits with an editor, you can still checkout the commits you squashed afterward. The
 # same happens with this script, so if manual squashing saves space, then I feel like this must as well.
 
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
-# TODO: Let the user provide a directory or repo, branch, and specific commit to start on
 main_branch = "yeetus"
 commit_branch = main_branch + "_CommitSquasher"
 
@@ -22,7 +21,6 @@ parser.add_argument('squash_num', metavar='N', type=int, nargs='?',
 
 # Runs a git command, prints it and the result, and returns a list of lines in the result
 # ex. git('pull', '--force')
-# TODO: Understand this thing (proc.close to allow command after command?)
 def git(*arguments):
     print(arguments)
     cmdline = ['git']
@@ -54,8 +52,23 @@ def git(*arguments):
 
 
 def main(args):
-    # TODO: Once the user is given the choice, make sure it's the right repository too
+    # Let the user change the repo if they want
+    print("Currently in directory " + os.getcwd())
+    new_dir = input("Enter new directory (empty for no change):\n").replace(' ', '')
+    if new_dir != "":
+        os.chdir(new_dir)
+
+    # Change branch
+    global main_branch
+    global commit_branch
+    print("Currently prepared to checkout " + main_branch)
+    new_branch = input("Enter new branch (empty for no change):\n")
+    if new_branch != "":
+        main_branch = new_branch
+        commit_branch = main_branch + "_CommitSquasher"
+
     git('checkout', main_branch)
+    print(seperator)
     print('Prepare to "squash" some commits.')
 
     # Get the amount of commits (including current) to squash
@@ -85,8 +98,8 @@ def main(args):
         message = git('show', '--no-patch', '--format=%B', h)[0]
         messages.append(message)
 
-    # TODO possibly: With the two most recent git commands^, the user will see a list of all the hashes and messages of
-    #  the requested commits. Use this command to print more detail:
+    # With the two most recent git commands^, the user will see a list of all the hashes and messages of the requested
+    # commits. Use this command to print more detail:
     # git('log', '--graph', '--decorate', '--oneline')
 
     # Print the messages
