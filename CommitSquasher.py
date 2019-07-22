@@ -49,6 +49,7 @@ def git(*arguments):
         print('Git command terminated with exit code {0}.'.format(return_code))
         sys.exit(1)
 
+    proc.kill()
     return output
 
 
@@ -201,7 +202,7 @@ def check_lines(lst, desired):
 # Create the squashed commit in a temporary branch, revert commits in the main one, then cherry-pick the squashed commit
 # 'oldest_hash' is the SHA of the oldest commit to squash
 # 'squash_mes' is the new commit's message
-def squash(oldest_hash, squash_mes, do_add):
+def squash(oldest_hash, squash_mes):
     # Save and commit the files to the current branch so a temporary one can be checked out
     git('checkout', '-b', commit_branch)
     sleep(3)
@@ -222,9 +223,4 @@ def squash(oldest_hash, squash_mes, do_add):
 
 if __name__ == "__main__":
     clargs = parser.parse_args()
-    # main(clargs)
-    git('checkout', 'master')
-    git('checkout', 'yeetus')
-    git('checkout', '-b', 'FAST')
-    git('checkout', 'yeetus')
-    git('branch', '-D', 'FAST')
+    main(clargs)
