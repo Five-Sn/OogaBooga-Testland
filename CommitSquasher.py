@@ -202,7 +202,8 @@ def add_or_drop(squash_mes):
     git('commit', '-m', 'Saving changes for: ' + squash_mes)
 
 
-# Searched the list lst for an index that matches desired
+# Search the list 'lst' to see if a string at any index contains the substring 'desired'
+# Returns True or False accordingly
 def check_lines(lst, desired):
     for line in lst:
         if desired in line:
