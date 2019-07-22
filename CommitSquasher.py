@@ -170,7 +170,6 @@ def confirm_squash(message):
 
 # If there are unstaged changes, add or drop them (whichever the user says)
 def add_or_drop(squash_mes):
-    # TODO: Test unstaged and/or staged changes, adding, dropping, and no changes
     print("Cool")
     status = git('status')
     if check_lines(status, "Changes not staged for commit") is True:
@@ -189,8 +188,8 @@ def add_or_drop(squash_mes):
     git('commit', '-m', 'Saving changes for: ' + squash_mes)
     sleep(1)
 
+    print("I AM QUITTING")
     quit()
-    git('add', '.')
 
 
 # Searched the list lst for an index that matches desired
