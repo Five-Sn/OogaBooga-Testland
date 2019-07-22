@@ -185,10 +185,8 @@ def add_or_drop(squash_mes):
             git('stash', 'save', '--keep-index', '--include-untracked')
             git('stash', 'drop')
 
-    sleep(1)
     print("Committing if there are staged changes....")
     git('commit', '-m', 'Saving changes for: ' + squash_mes)
-    sleep(1)
 
 
 # Searched the list lst for an index that matches desired
@@ -205,18 +203,14 @@ def check_lines(lst, desired):
 def squash(oldest_hash, squash_mes):
     # Save and commit the files to the current branch so a temporary one can be checked out
     git('checkout', '-b', commit_branch)
-    sleep(3)
     # Save changes in the actual squashed commit on this temp branch
     git('commit', '--allow-empty', '-m', squash_mes)
-    sleep(1)
     # Hash of the squashed commit that was just made:
     new_hash = git('log', '--pretty=format:%h')[0]
     # Return to the main branch, reset over the the "squashing" commits, then bring the actual commit over
     git('checkout', main_branch)
-    sleep(3)
     git('reset', oldest_hash + '^')
     git('cherry-pick', '--allow-empty', new_hash)
-    sleep(1)
     # Delete the temporary branch
     git('branch', '-D', commit_branch)
 
