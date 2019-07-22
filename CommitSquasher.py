@@ -3,6 +3,9 @@ import argparse
 from subprocess import Popen, STDOUT, PIPE
 from time import sleep
 
+# Note: When manually squashing commits with an editor, you can still checkout the commits you squashed afterward. The
+# same happens with this script, so if manual squashing saves space, then I feel like this must as well.
+
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 # TODO: Let the user provide a directory or repo, branch, and specific commit to start on
 main_branch = "yeetus"
@@ -114,9 +117,17 @@ def get_new_message(olds, arg_message):
     # Otherwise, get one from the user
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
-        # TODO: Figure out a way of accepting multi-line input (maybe that one with Ctrl+D?)
-        new = input("Write new message below, enter to submit.\n")
-        print("Message received.")
+        # Get multiple lines of input, then add them together for the message
+        print("Write a new message below, Ctrl+D to submit, last line is excluded.")
+        contents = []
+        while True:
+            # Ctrl + D interrupts input()
+            try:
+                msg_line = input()
+            except EOFError:
+                break
+            contents.append(msg_line)
+        new = "\n".join(contents)
 
     elif 'n' == write_new:
         use_latest = input("Use latest message? (y) Or combine all messages? (any other input) ").lower()

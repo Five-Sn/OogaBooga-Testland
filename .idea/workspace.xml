@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="" />
+    <list default="true" id="ce59cc78-8820-49a8-a84b-a27eeb58db15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/CommitSquasher.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommitSquasher.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +18,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1296">
-              <caret line="81" selection-start-line="81" selection-end-line="81" />
+            <state relative-caret-position="470">
+              <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#4124#5186#0" />
-                <element signature="e#5303#5554#0" />
+                <element signature="e#1135#1742#0" />
+                <element signature="e#5215#5470#0" />
               </folding>
             </state>
           </provider>
@@ -30,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CommitCreator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+            <state relative-caret-position="224">
+              <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -66,8 +68,9 @@
         <option value="$PROJECT_DIR$/SingleCommand.py" />
         <option value="$PROJECT_DIR$/RandomlyGeneratedCommitName.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/CommitSquasher.py" />
         <option value="$PROJECT_DIR$/CommitCreator.py" />
+        <option value="$PROJECT_DIR$/CtrlDTest.py" />
+        <option value="$PROJECT_DIR$/CommitSquasher.py" />
       </list>
     </option>
   </component>
@@ -75,13 +78,14 @@
     <option name="x" value="-1683" />
     <option name="y" value="-519" />
     <option name="width" value="1440" />
-    <option name="height" value="935" />
+    <option name="height" value="953" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -93,7 +97,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -113,7 +116,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.CommitCreator">
+  <component name="RunManager" selected="Python.CtrlDTest">
     <configuration name="BestScript" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="OogaBooga-Testland" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -177,6 +180,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="CtrlDTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="OogaBooga-Testland" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CtrlDTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Ungui" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="OogaBooga-Testland" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -200,6 +224,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.CtrlDTest" />
         <item itemvalue="Python.CommitCreator" />
         <item itemvalue="Python.CommitSquasher" />
         <item itemvalue="Python.Ungui" />
@@ -230,7 +255,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <frame x="-1683" y="-519" width="1440" height="953" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989518" visible="true" weight="0.24524313" />
@@ -238,13 +263,13 @@
       <window_info id="Favorites" order="2" sideWeight="0.5010482" side_tool="true" weight="0.29175475" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290398" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993094" weight="0.42165604" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993094" visible="true" weight="0.42044136" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290398" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290398" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32866243" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32171893" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006906" side_tool="true" weight="0.32786885" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -272,22 +297,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CommitCreator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        <state relative-caret-position="224">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CtrlDTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CommitSquasher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1296">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        <state relative-caret-position="470">
+          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#4124#5186#0" />
-            <element signature="e#5303#5554#0" />
+            <element signature="e#1135#1742#0" />
+            <element signature="e#5215#5470#0" />
           </folding>
         </state>
       </provider>
