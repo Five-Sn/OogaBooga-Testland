@@ -250,7 +250,6 @@ def confirm_squash(message):
 
 
 # If there are unstaged changes, add or drop them (whichever the user says)
-# TODO: I'm pretty sure this works, but more testing couldn't hurt
 def add_or_drop(squash_mes):
     print("Cool")
     status = git('status')
@@ -266,7 +265,7 @@ def add_or_drop(squash_mes):
             git('stash', 'drop')
 
     print("Committing if there are staged changes....")
-    git('commit', '-m', 'Saving changes for: ' + squash_mes)
+    git('commit', '-m', '--allow-empty', 'Saving changes for: ' + squash_mes)
 
 
 # Search the list 'lst' to see if a string at any index contains the substring 'desired'
