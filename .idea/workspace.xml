@@ -124,7 +124,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.CommitSquasher">
+  <component name="RunManager" selected="Python.CommitCreator">
     <configuration name="BestScript" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="OogaBooga-Testland" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -232,8 +232,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.CommitSquasher" />
         <item itemvalue="Python.CommitCreator" />
+        <item itemvalue="Python.CommitSquasher" />
         <item itemvalue="Python.CtrlDTest" />
         <item itemvalue="Python.Ungui" />
         <item itemvalue="Python.BestScript" />
