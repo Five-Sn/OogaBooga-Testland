@@ -124,7 +124,14 @@ def main(args):
     if push_squash is False:
         input("Squashing complete. Enter to quit.")
     elif push_squash is True:
-        print("Squashing complete. Enter to push (will not use --force).")
+        print("Squashing complete. Ready to push.")
+        print("Pushing will use --force because the local branch is most likely behind the remote.")
+        confirm = input('Input "Y" to continue (any other input quits):\n')
+        if 'Y' == confirm:
+            print("Confirmed.")
+        else:
+            print("Quitting.")
+            quit()
 
 
 # Change the directory/repo, branch to affect, and whether the changes will be pushed to the remote
@@ -132,9 +139,10 @@ def change_branch_info():
     global main_branch
     global push_squash
     print(seperator)
-    print("Directory or repository  - " + os.getcwd())
-    print("Branch to squash on      - " + main_branch)
-    print("Push change (no --force) - " + str(push_squash))
+    print("Directory or repository - " + os.getcwd())
+    print("Branch to squash on     - " + main_branch)
+    print("Push after squash       - " + str(push_squash))
+    print("\n! Note that pushing will use --force.")
     print(seperator)
     do_change = input("Change any of these settings? (y/n)").lower()
 
