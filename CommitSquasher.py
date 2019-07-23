@@ -121,14 +121,21 @@ def main(args):
     squash(hashes[len(hashes) - 1], new_mes)
     print(seperator)
 
+    # Finish the program
+    # If the user did not want to push, simply quit
     if push_squash is False:
         input("Squashing complete. Enter to quit.")
+    # If the user wanted to push, get confirmation
     elif push_squash is True:
         print("Squashing complete. Ready to push.")
         print("Pushing will use --force because the local branch is most likely behind the remote.")
         confirm = input('Input "Y" to continue (any other input quits):\n')
+        # Push then quit if the user confirmed
         if 'Y' == confirm:
             print("Confirmed.")
+            git('push', '--force')
+            input("Push complete. Enter to quit.")
+        # Simply quit if the user didn't properly confirm
         else:
             print("Quitting.")
             quit()
@@ -238,8 +245,7 @@ def confirm_squash(message):
     print(seperator)
     print(message)
     print("\n" + seperator)
-    input("Squashing will add and commit any unstaged changes.\n"
-          "Enter to begin squash....")
+    input("Enter to begin squash....")
     print(seperator)
 
 
