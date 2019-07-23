@@ -15,10 +15,13 @@ import os
 # Note: When manually squashing commits with an editor, you can still checkout the commits you squashed afterward. The
 # same happens with this script, so if manual squashing saves space, then I feel like this must as well.
 
+
 # Printed to make the console output a bit more readable
 seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 # The branch this script will squash the commits of
 main_branch = "yeetus"
+# Whether to push the changes to the remote repo
+push_squash = False
 # A temporary branch that will be created in the process
 commit_branch = main_branch + "_CommitSquasher"
 
@@ -64,24 +67,11 @@ def git(*arguments):
 
 
 def main(args):
-    # Let the user change the repo if they want
-    print("Currently in directory " + os.getcwd())
-    new_dir = input("Enter new directory (empty for no change):\n").replace(' ', '')
-    if new_dir != "":
-        os.chdir(new_dir)
-
-    # Change branch
-    global main_branch
-    global commit_branch
-    print("Currently prepared to checkout " + main_branch)
-    new_branch = input("Enter new branch (empty for no change):\n")
-    if new_branch != "":
-        main_branch = new_branch
-        commit_branch = main_branch + "_CommitSquasher"
+    change_branch_info()
 
     git('checkout', main_branch)
-    print(seperator)
     print('Prepare to "squash" some commits.')
+    print(seperator)
 
     # Get the amount of commits (including current) to squash
     squash_amount = 0
@@ -130,7 +120,61 @@ def main(args):
     # Squash the squash
     squash(hashes[len(hashes) - 1], new_mes)
     print(seperator)
-    input("Squashing complete. Enter to quit.")
+
+    if push_squash is False:
+        input("Squashing complete. Enter to quit.")
+    elif push_squash is True:
+        print("Squashing complete. Enter to push (will not use --force).")
+
+
+# Change the directory/repo, branch to affect, and whether the changes will be pushed to the remote
+def change_branch_info():
+    global main_branch
+    global push_squash
+    print(seperator)
+    print("On directory or repository: " + os.getcwd())
+    print("Set to checkout branch " + main_branch)
+    if push_squash is True:
+        print("Set to push squash to remote repository (without --force).")
+    elif push_squash is False:
+        print("Set to only change local branch (would push without --force otherwise).")
+    print(seperator)
+    do_change = input("Change any of these settings? (y/n)").lower()
+
+    # Don't change any of the info above
+    if 'n' == do_change:
+        print("Will use current settings.")
+
+    # Change the info above
+    elif 'y' == do_change:
+        # Let the user change the repo if they want
+        print("Currently in directory " + os.getcwd())
+        new_dir = input("Enter new directory (empty for no change):\n").replace(' ', '')
+        if new_dir != "":
+            os.chdir(new_dir)
+
+        # Change branch
+        global commit_branch
+        print("Currently prepared to checkout " + main_branch)
+        new_branch = input("Enter new branch (empty for no change):\n")
+        if new_branch != "":
+            main_branch = new_branch
+            commit_branch = main_branch + "_CommitSquasher"
+
+        # Change local or remote repo
+        if push_squash is True:
+            print("Currently prepared to push squash changes to remote origin, not contain to local")
+        elif push_squash is False:
+            print("Currently prepared to only affect local repository, not remote")
+        change_pos = input("Switch to opposite setting? (y/empty for no change):\n").lower()
+        if change_pos != "" and change_pos == 'y':
+            push_squash = not push_squash
+
+    # The user typed something other than "y" or "n"
+    else:
+        print("Invalid input, making no changes.")
+
+    print(seperator)
 
 
 # Returns a new message for a commit determined by user input
@@ -146,7 +190,7 @@ def get_new_message(olds, arg_message):
     write_new = input("Write a completely new message for the squashed commit? (y/n) ").lower()
     if 'y' == write_new:
         # Get multiple lines of input, then add them together for the message
-        print('Write a new message below, Ctrl+D to submit, write "done" on last line.')
+        print('Write a new message below, write "done" on last line, then press enter.')
         contents = []
         while True:
             # Ctrl + D interrupts input()
