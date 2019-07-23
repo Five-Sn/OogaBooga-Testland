@@ -2,7 +2,7 @@ import subprocess
 from string import ascii_letters
 from random import choice
 from time import sleep
-commits = 4
+commits = 10
 name_length = 5
 # There are 380,000,000+ possible names!
 
