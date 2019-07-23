@@ -17,7 +17,7 @@ import os
 
 
 # Printed to make the console output a bit more readable
-seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
+seperator = "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"
 # The branch this script will squash the commits of
 main_branch = "yeetus"
 # Whether to push the changes to the remote repo
@@ -132,12 +132,9 @@ def change_branch_info():
     global main_branch
     global push_squash
     print(seperator)
-    print("On directory or repository: " + os.getcwd())
-    print("Set to checkout branch " + main_branch)
-    if push_squash is True:
-        print("Set to push squash to remote repository (without --force).")
-    elif push_squash is False:
-        print("Set to only change local branch (would push without --force otherwise).")
+    print("Directory or repository  - " + os.getcwd())
+    print("Branch to squash on      - " + main_branch)
+    print("Push change (no --force) - " + str(push_squash))
     print(seperator)
     do_change = input("Change any of these settings? (y/n)").lower()
 
